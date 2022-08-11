@@ -49,8 +49,6 @@ const getUsersSubscriberCorpEntities = async (_token, _clicod) => {
 //-------------------------------------------------- ENDPOINTS POST----------------------------------------------------------------------
 const assignUserSubscriberCorpEntity = async (_token, request) => {
   try {
-      console.log(request);
-
           const config = {
               method: 'post',
              
