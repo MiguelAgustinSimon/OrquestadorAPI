@@ -1,6 +1,6 @@
 const express = require("express");
 const jwt=require("jsonwebtoken");
-
+var cors = require("cors");
 
 class Server {
     constructor() {
@@ -12,7 +12,8 @@ class Server {
         //Connect to database
         this.dbConnection();
 
-        //middlewares this.middlewares();
+        //middlewares 
+        this.middlewares();
 
         //App routes
         this.routes();
@@ -33,11 +34,11 @@ class Server {
 
     //Body lecture
     const router = require('express').Router();
-    const swaggerUi = require('swagger-ui-express');
-    const swaggerDocument = require('./swagger.json');
+    // const swaggerUi = require('swagger-ui-express');
+    // const swaggerDocument = require('./swagger.json');
 
-    router.use('/api-docs', swaggerUi.serve);
-    router.get('/api-docs', swaggerUi.setup(swaggerDocument));
+    // router.use('/api-docs', swaggerUi.serve);
+    // router.get('/api-docs', swaggerUi.setup(swaggerDocument));
     this.app.use("/", router);
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(express.json());
