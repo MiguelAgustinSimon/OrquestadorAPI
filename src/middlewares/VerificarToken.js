@@ -1,7 +1,9 @@
 var jwt = require('jsonwebtoken');
+require('dotenv').config();
 //Authorization: Barer <token>
 const VerificarToken =async (req, res, next) => {
     try {
+      
         // let token = req.get('token') //Obtengo el token de los headers
         const bearerHeader = req.headers['authorization'];
         if(typeof bearerHeader !== 'undefined'){

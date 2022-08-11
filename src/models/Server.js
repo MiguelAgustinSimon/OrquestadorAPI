@@ -48,7 +48,7 @@ class Server {
   }
 
     routes() {
-        this.app.use("/api", require("../routes/OrquestadorRoutes"));
+        this.app.use("/api", require("../routes/UserCorpCustomerRoutes"));
     }
 
 

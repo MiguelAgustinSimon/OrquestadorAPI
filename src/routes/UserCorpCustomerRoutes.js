@@ -3,14 +3,14 @@ const verificarToken=require('../middlewares/VerificarToken');
 
 const router = Router();
 const {
-    crearSuscriptor
-}=require("../controllers/Orquestador");
+    getCustomerUserCorpCustomer
+}=require("../controllers/UserCorpCustomer");
 
 
 //Aca genero las rutas que llamo del controller
 
 //Rutas GET
-router.get("/crearSuscriptor", crearSuscriptor);
+router.get("/getCustomerUserCorpCustomer",verificarToken, getCustomerUserCorpCustomer);
 
 
 module.exports = router;
