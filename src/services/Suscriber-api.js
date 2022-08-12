@@ -93,8 +93,9 @@ const createSubscriberCorpEntities = async (_token, _clicod, _cuit, req, res) =>
   }
 }
 
-const assignUserSubscriberCorpEntity = async (_token, request) => {
+const assignUserSubscriberCorpEntity = async (_token, idOrg,subscriber_id, req,res) => {
   try {
+    let fechaHoy= new Date().toISOString().slice(0, 10);  
           const config = {
               method: 'post',
              
@@ -103,17 +104,20 @@ const assignUserSubscriberCorpEntity = async (_token, request) => {
                 Accept: 'application/json',
                 "Authorization" : ` ${_token}` 
               },
-              data: { subscriber_id:request.subscriber_id,
-                        user_id:request.user_id,
-                        creation_user:request.creation_user,
-                        creation_date:request.creation_date}
+              data: { subscriber_id:subscriber_id,
+                        user_id:subscriber_id,
+                        creation_user:'SG',
+                        creation_date:fechaHoy}
           }
           var res = await axios(config);
-          return  { statusCode : res.status, 
+          return  { status : res.status, 
                     suscriber : res.data 
           };
   }catch (err) {
-      throw err;
+    return {
+      status: err.response.status,
+      suscriber: null
+    };
   }   
 }
 

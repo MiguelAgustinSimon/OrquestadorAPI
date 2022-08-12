@@ -30,6 +30,31 @@ const getByCuitOrganizationCorpEntities = async (_token, _cuit) => {
 }
 
 
+const getUserOrganizationByLoginAccountCorpEntities = async (_token,_loginAccountId,req,res) => {
+  try {
+    const config = {
+      method: 'get',
+      url: ` ${URL}getUserOrganizationByLoginAccountCorpEntities`,
+      headers: {
+        Accept: 'application/json',
+        "Authorization": ` ${_token}`
+      },
+      params: { loginAccountId: _loginAccountId }
+    }
+    var res = await axios(config);
+
+    return {
+      statusCode: res.status,
+      UserOrganization: res.data
+    };
+  } catch (err) {
+    return {
+      statusCode: err.response.status,
+      UserOrganization: null
+    };
+  }
+}
+
 //-------------------------------------------------- ENDPOINTS POST---------------------------------------------------------------------
 const createOrganizacionCorpEntities = async (_token, _cuit, req, res) => {
   try {
@@ -74,8 +99,45 @@ const createOrganizacionCorpEntities = async (_token, _cuit, req, res) => {
   }
 }
 
+const addUserOrganizationCorpEntities = async (_token, _idOrg,_loginAccountId,req,res) => {
+  try {
+    const config = {
+      method: 'post',
+
+      url: ` ${URL}addUserOrganizationCorpEntities`,
+      headers: {
+        Accept: 'application/json',
+        "Authorization": ` ${_token}`
+      },
+      data: {
+        loginAccountId: _loginAccountId,
+        organizationId: _idOrg,
+        organizationUserTypeCode: 'ORG-STAFF',
+        organizationCommercialUserTypeCode: 'SUBSCRIBER',
+        userStatusCode:'ACTIVE'
+      }
+    }
+    console.log(config.data)
+    var res = await axios(config);
+    console.log(res)
+    return {
+      statusCode: res.status,
+      UserOrganization: res.data
+    };
+  } catch (err) {
+    console.log(err)
+    return {
+      statusCode: err.response.status,
+      UserOrganization: null
+    };
+
+  }
+}
+
 module.exports = {
   //Aca exporto los metodos
   getByCuitOrganizationCorpEntities,
-  createOrganizacionCorpEntities
+  getUserOrganizationByLoginAccountCorpEntities,
+  createOrganizacionCorpEntities,
+  addUserOrganizationCorpEntities
 }

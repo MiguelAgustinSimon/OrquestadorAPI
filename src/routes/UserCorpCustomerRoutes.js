@@ -10,7 +10,7 @@ const {
 //Aca genero las rutas que llamo del controller
 
 //Rutas GET
-router.post("/createCustomerUserCorpCustomer/:clicod/:cuit",verificarToken, createCustomerUserCorpCustomer);
+router.post("/createCustomerUserCorpCustomer/:clicod/:cuit/:email",verificarToken, createCustomerUserCorpCustomer);
 
 
 //Rutas POST
