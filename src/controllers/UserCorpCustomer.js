@@ -14,6 +14,7 @@ const createCustomerUserCorpCustomer = async(req,res) => {
         const {clicod}= req.params; //ej: 445540
         const {cuit}= req.params; //ej: 20286721568
 
+     
 
 
         //paso 1 OK: verificar si existe org con cuit
@@ -40,10 +41,11 @@ const createCustomerUserCorpCustomer = async(req,res) => {
                 else{
                     //paso 4: Si no existe, dar de alta al suscriptor en tabla Suscriptores 
                     let { statusCode, suscriber } = await createSubscriberCorpEntities(token,clicod,cuit,req,res);
-                    if (statusCode == 200){
+                    if (statusCode == 200 || statusCode==201){
                         return res.status(200).json({suscriber});
                     }
                     else{
+                        console.log(statusCode);
                         console.log("NO ANDUVO createSubscriberCorpEntities");
                     }
                 }

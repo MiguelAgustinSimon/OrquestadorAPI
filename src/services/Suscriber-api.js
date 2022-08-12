@@ -79,14 +79,12 @@ const createSubscriberCorpEntities = async (_token, _clicod, _cuit, req, res) =>
     }
 
     var res = await axios(config);
-
     return {
       statusCode: res.status,
       suscriber: res.data
     };
   } catch (err) {
-    console.log("ENTRO AL CATCH ENDPOINT");
-    console.log(err.data.message);
+    console.log(err.response.data.message);
     return {
       statusCode: err.response.status,
       suscriber: null
